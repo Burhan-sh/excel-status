@@ -19,6 +19,9 @@ class Excel_Status_Actions {
         
         // AJAX actions for bulk update
         add_action('wp_ajax_excel_status_bulk_update', array(__CLASS__, 'handle_bulk_update'));
+        
+        // AJAX action for reset/clear data
+        add_action('wp_ajax_excel_status_reset_data', array(__CLASS__, 'handle_reset_data'));
     }
     
     /**
@@ -155,6 +158,27 @@ class Excel_Status_Actions {
         } else {
             wp_send_json_error(array('message' => __('Failed to update any orders.', 'excel-status')));
         }
+    }
+    
+    /**
+     * Handle reset/clear data via AJAX
+     */
+    public static function handle_reset_data() {
+        // Check nonce
+        check_ajax_referer('excel_status_nonce', 'nonce');
+        
+        // Check permissions
+        if (!current_user_can('manage_woocommerce')) {
+            wp_send_json_error(array('message' => __('Permission denied.', 'excel-status')));
+        }
+        
+        // Clear the transient data
+        $transient_key = 'excel_status_orders_' . get_current_user_id();
+        delete_transient($transient_key);
+        
+        wp_send_json_success(array(
+            'message' => __('All data cleared successfully. You can now upload a new file.', 'excel-status')
+        ));
     }
 }
 

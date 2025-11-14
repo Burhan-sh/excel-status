@@ -3,7 +3,7 @@
  * Plugin Name: Excel Order Status Updater
  * Plugin URI: https://rajuplastics.com
  * Description: Import CSV/XLSX files with tracking numbers and bulk update WooCommerce order statuses
- * Version: 1.0.0
+ * Version: 1.1.0
  * Author: Raju Plastics
  * Author URI: https://rajuplastics.com
  * Text Domain: excel-status

@@ -172,7 +172,13 @@ class Excel_Status_Admin_Page {
                 <!-- Orders Table -->
                 <?php if (!empty($orders)) : ?>
                 <div class="excel-status-orders-section">
-                    <h2><?php esc_html_e('Matched Orders', 'excel-status'); ?></h2>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                        <h2 style="margin: 0;"><?php esc_html_e('Matched Orders', 'excel-status'); ?></h2>
+                        <button type="button" id="excel-status-reset-data" class="button button-secondary" style="background: #dc3232; color: white; border-color: #dc3232;">
+                            <span class="dashicons dashicons-trash" style="vertical-align: middle; margin-top: 2px;"></span>
+                            <?php esc_html_e('Clear All Data', 'excel-status'); ?>
+                        </button>
+                    </div>
                     <form method="post" id="excel-status-orders-form">
                         <?php wp_nonce_field('excel_status_update'); ?>
                         <?php

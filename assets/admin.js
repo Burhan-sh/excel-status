@@ -200,6 +200,50 @@
             }
         });
         
+        /**
+         * Reset/Clear All Data
+         */
+        $(document).on('click', '#excel-status-reset-data', function(e) {
+            e.preventDefault();
+            
+            var $button = $(this);
+            
+            // Confirm with user
+            if (!confirm('Are you sure you want to clear all data? This will remove all orders from the list. You will need to upload a new file to see orders again.')) {
+                return;
+            }
+            
+            // Disable button
+            $button.prop('disabled', true).html('<span class="dashicons dashicons-update" style="vertical-align: middle; margin-top: 2px; animation: spin 1s linear infinite;"></span> Clearing...');
+            
+            // Send AJAX request
+            $.ajax({
+                url: excelStatusData.ajaxUrl,
+                type: 'POST',
+                data: {
+                    action: 'excel_status_reset_data',
+                    nonce: excelStatusData.nonce
+                },
+                success: function(response) {
+                    if (response.success) {
+                        showMessage(response.data.message, 'success');
+                        
+                        // Reload page after 1.5 seconds
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1500);
+                    } else {
+                        showMessage(response.data.message, 'error');
+                        $button.prop('disabled', false).html('<span class="dashicons dashicons-trash" style="vertical-align: middle; margin-top: 2px;"></span> Clear All Data');
+                    }
+                },
+                error: function() {
+                    showMessage('An error occurred. Please try again.', 'error');
+                    $button.prop('disabled', false).html('<span class="dashicons dashicons-trash" style="vertical-align: middle; margin-top: 2px;"></span> Clear All Data');
+                }
+            });
+        });
+        
     });
     
 })(jQuery);
