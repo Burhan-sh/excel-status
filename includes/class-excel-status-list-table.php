@@ -69,8 +69,8 @@ class Excel_Status_List_Table extends WP_List_Table {
         // Sorting
         usort($this->orders_data, array($this, 'usort_reorder'));
         
-        // Pagination
-        $per_page = 20;
+        // Pagination - Get user preference or use default
+        $per_page = $this->get_items_per_page('orders_per_page', 20);
         $current_page = $this->get_pagenum();
         $total_items = count($this->orders_data);
         

@@ -17,13 +17,14 @@ class Excel_Status_Admin_Page {
         add_action('admin_menu', array(__CLASS__, 'add_admin_menu'));
         add_action('admin_init', array(__CLASS__, 'handle_file_upload'));
         add_action('admin_init', array(__CLASS__, 'handle_settings_save'));
+        add_filter('set-screen-option', array(__CLASS__, 'set_screen_option'), 10, 3);
     }
     
     /**
      * Add admin menu under WooCommerce
      */
     public static function add_admin_menu() {
-        add_submenu_page(
+        $hook = add_submenu_page(
             'woocommerce',
             __('Order Status Updater', 'excel-status'),
             __('Status Updater', 'excel-status'),
@@ -31,6 +32,32 @@ class Excel_Status_Admin_Page {
             'excel-status-updater',
             array(__CLASS__, 'render_admin_page')
         );
+        
+        // Add screen options
+        add_action("load-{$hook}", array(__CLASS__, 'add_screen_options'));
+    }
+    
+    /**
+     * Add screen options for per page setting
+     */
+    public static function add_screen_options() {
+        $option = 'per_page';
+        $args = array(
+            'label' => __('Orders per page', 'excel-status'),
+            'default' => 20,
+            'option' => 'orders_per_page'
+        );
+        add_screen_option($option, $args);
+    }
+    
+    /**
+     * Save screen options
+     */
+    public static function set_screen_option($status, $option, $value) {
+        if ('orders_per_page' === $option) {
+            return $value;
+        }
+        return $status;
     }
     
     /**
