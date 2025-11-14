@@ -1,0 +1,32 @@
+# Dependencies
+/vendor/
+composer.lock
+
+# WordPress
+.htaccess
+wp-config.php
+wp-content/uploads/
+wp-content/cache/
+
+# OS Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Logs
+*.log
+debug.log
+error_log
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*~
+

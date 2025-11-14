@@ -1,0 +1,92 @@
+================================================================
+✅ CONFLICT FIX APPLIED - READ THIS
+================================================================
+
+PROBLEM THAT WAS FIXED:
+------------------------
+Fatal error: Cannot declare class ComposerAutoloaderInit...
+Duplicate autoloader conflict between plugin and theme.
+
+
+SOLUTION APPLIED:
+-----------------
+Plugin ko modify kar diya gaya hai. Ab ye:
+
+1. ✅ Pehle THEME ki library check karega
+2. ✅ Agar theme mein library hai, to wahi use karega
+3. ✅ Class already loaded hai to skip karega
+4. ✅ NO MORE DUPLICATE AUTOLOADER CONFLICT!
+
+
+WHAT YOU NEED TO DO NOW:
+-------------------------
+
+STEP 1: Delete Vendor Folder (IMPORTANT!)
+------------------------------------------
+Plugin folder se "vendor" folder DELETE kar dein:
+
+Location: 
+G:\Projects\Raju Plastics\plugin-custom\excel-status\vendor\
+
+Right-click → Delete (ya Shift+Delete)
+
+
+STEP 2: Re-upload Plugin to WordPress
+--------------------------------------
+1. Plugin folder ko ZIP banayein (vendor folder ke bina)
+2. Purani plugin ko WordPress se deactivate + delete karein
+3. Nayi ZIP upload karke activate karein
+
+
+STEP 3: Test Plugin
+--------------------
+1. WooCommerce → Status Updater par jayein
+2. Agar page load ho jaye = ✅ Working!
+3. Excel file upload karke test karein
+
+
+FILES THAT WERE MODIFIED:
+--------------------------
+✓ excel-status.php (main plugin file)
+  - Added smart library loading logic
+  - Theme ki library ko priority di gayi
+  - Duplicate loading prevention added
+
+✓ README.md (updated instructions)
+✓ INSTALLATION.txt (updated instructions)
+
+
+CODE CHANGES SUMMARY:
+---------------------
+Old code:
+    require_once EXCEL_STATUS_PLUGIN_DIR . 'vendor/autoload.php';
+
+New code (smart loading):
+    $theme_vendor = get_stylesheet_directory() . '/excel_library/vendor/autoload.php';
+    $plugin_vendor = EXCEL_STATUS_PLUGIN_DIR . 'vendor/autoload.php';
+    
+    if (file_exists($theme_vendor) && !class_exists('PhpOffice\PhpSpreadsheet\IOFactory')) {
+        require_once $theme_vendor;  // Use theme's library
+    } elseif (file_exists($plugin_vendor) && !class_exists('PhpOffice\PhpSpreadsheet\IOFactory')) {
+        require_once $plugin_vendor;  // Fallback to plugin's library
+    }
+
+
+WHY THIS WORKS:
+---------------
+✓ Checks if class already loaded (prevents duplicate)
+✓ Prefers theme's library (your existing setup)
+✓ Has fallback to plugin's library (if theme doesn't have it)
+✓ No conflicts, no fatal errors!
+
+
+VERIFICATION:
+-------------
+After re-uploading, website should work normally.
+No more "Fatal error: Cannot declare class" message.
+
+
+================================================================
+READY TO RE-UPLOAD! 🚀
+================================================================
+

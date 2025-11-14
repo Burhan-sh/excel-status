@@ -1,0 +1,80 @@
+================================================================
+EXCEL ORDER STATUS UPDATER - INSTALLATION GUIDE
+================================================================
+
+IMPORTANT NOTE:
+---------------
+Ye plugin automatically aapki child theme ki PhpSpreadsheet 
+library use karega (Impreza-child/excel_library/vendor/).
+
+Plugin mein vendor folder install karne ki ZARURAT NAHI!
+
+
+STEP 1: Plugin WordPress Mein Upload Karein
+--------------------------------------------
+1. "excel-status" folder ko ZIP file bana lein
+   (vendor folder delete kar dein agar ho)
+2. WordPress Admin → Plugins → Add New
+3. "Upload Plugin" click karein
+4. ZIP file select karke install karein
+5. "Activate" button click karein
+
+
+STEP 2: Settings Configure Karein
+----------------------------------
+1. WooCommerce → Status Updater par jayein
+2. Settings section mein:
+   - Tracking Meta Key: _rj_indiapost_tracking_number
+   (Ya apni meta key daalein)
+3. "Save Settings" click karein
+
+
+STEP 3: Excel File Prepare Karein
+----------------------------------
+Excel file mein ek column "Tracking" naam se hona chahiye.
+
+Example:
+---------
+| Tracking Number | Customer | Status     |
+|-----------------|----------|------------|
+| TR12345678      | John Doe | Processing |
+| TR87654321      | Jane S.  | Completed  |
+
+
+STEP 4: File Upload Karke Orders Update Karein
+------------------------------------------------
+1. Status Updater page par jayein
+2. CSV/XLSX file upload karein
+3. Matched orders table mein dikhenge
+4. Single ya Bulk status update karein
+
+
+REQUIREMENTS:
+-------------
+✓ WordPress 5.0+
+✓ PHP 7.2+
+✓ WooCommerce 3.0+
+✓ Theme mein PhpSpreadsheet Library (already hai)
+
+
+TROUBLESHOOTING:
+----------------
+Agar "Fatal error: Cannot declare class" aaye to:
+
+1. Plugin folder se "vendor" folder DELETE kar dein
+2. Theme ki library use hogi automatically
+
+
+HOW IT WORKS:
+-------------
+Plugin automatically check karta hai:
+1. Pehle theme ki library use karta hai
+2. Agar theme mein nahi hai, to plugin ki library use karta hai
+3. Class already loaded hai to skip karta hai (no duplicate)
+
+
+SUPPORT:
+--------
+README.md file mein detailed documentation hai.
+
+================================================================

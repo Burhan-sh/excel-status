@@ -1,0 +1,222 @@
+/**
+ * Excel Status Updater - Admin Styles
+ */
+
+.excel-status-wrap {
+    max-width: 1400px;
+    margin: 20px 0;
+}
+
+.excel-status-container {
+    background: #fff;
+    padding: 20px;
+    margin-top: 20px;
+    border: 1px solid #ccd0d4;
+    box-shadow: 0 1px 1px rgba(0,0,0,.04);
+}
+
+/* Upload Section */
+.excel-status-upload-section {
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #ddd;
+}
+
+.excel-status-upload-section h2 {
+    margin-top: 0;
+}
+
+.excel-status-upload-form {
+    margin-top: 15px;
+}
+
+.excel-status-upload-form input[type="file"] {
+    margin-right: 10px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+.excel-status-upload-form .button-primary {
+    vertical-align: top;
+}
+
+/* Settings Section */
+.excel-status-settings-section {
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #ddd;
+}
+
+.excel-status-settings-section h2 {
+    margin-top: 0;
+}
+
+.excel-status-settings-form .form-table {
+    margin-top: 15px;
+}
+
+/* Orders Section */
+.excel-status-orders-section {
+    margin-top: 30px;
+}
+
+.excel-status-orders-section h2 {
+    margin-top: 0;
+}
+
+/* List Table Customization */
+.excel-status-orders-section .wp-list-table {
+    margin-top: 15px;
+}
+
+.excel-status-orders-section .wp-list-table th {
+    font-weight: 600;
+}
+
+.excel-status-orders-section .wp-list-table td {
+    vertical-align: middle;
+}
+
+.excel-status-orders-section .wp-list-table code {
+    background: #f0f0f1;
+    padding: 3px 6px;
+    border-radius: 3px;
+    font-size: 12px;
+}
+
+/* Status Dropdown */
+.excel-status-single-select {
+    min-width: 180px;
+    padding: 5px 8px;
+}
+
+/* Bulk Actions */
+.tablenav.top {
+    margin-bottom: 10px;
+}
+
+.tablenav select[name="action"],
+.tablenav select[name="action2"] {
+    min-width: 200px;
+}
+
+/* Action Buttons */
+.excel-status-update-single {
+    padding: 4px 12px;
+    font-size: 12px;
+}
+
+/* Order Status Badge */
+.order-status {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.order-status.wc-order-status-pending {
+    background: #f8dda7;
+    color: #94660c;
+}
+
+.order-status.wc-order-status-processing {
+    background: #c6e1c6;
+    color: #5b841b;
+}
+
+.order-status.wc-order-status-on-hold {
+    background: #f8dda7;
+    color: #94660c;
+}
+
+.order-status.wc-order-status-completed {
+    background: #c8d7e1;
+    color: #2e4453;
+}
+
+.order-status.wc-order-status-cancelled {
+    background: #eba3a3;
+    color: #761919;
+}
+
+.order-status.wc-order-status-refunded {
+    background: #eba3a3;
+    color: #761919;
+}
+
+.order-status.wc-order-status-failed {
+    background: #eba3a3;
+    color: #761919;
+}
+
+/* Loading State */
+.excel-status-loading {
+    opacity: 0.6;
+    pointer-events: none;
+    position: relative;
+}
+
+.excel-status-loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive */
+@media screen and (max-width: 782px) {
+    .excel-status-container {
+        padding: 15px;
+    }
+    
+    .excel-status-single-select {
+        min-width: 150px;
+        font-size: 14px;
+    }
+    
+    .excel-status-upload-form input[type="file"] {
+        display: block;
+        margin-bottom: 10px;
+        width: 100%;
+    }
+}
+
+/* Success/Error Messages */
+.excel-status-message {
+    padding: 12px;
+    margin: 15px 0;
+    border-left: 4px solid;
+    background: #fff;
+}
+
+.excel-status-message.success {
+    border-color: #46b450;
+    background: #ecf7ed;
+}
+
+.excel-status-message.error {
+    border-color: #dc3232;
+    background: #f9e7e7;
+}
+
+.excel-status-message.info {
+    border-color: #00a0d2;
+    background: #e5f5fa;
+}
+
